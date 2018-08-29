@@ -1,4 +1,4 @@
-import requests, pickle, datetime, os.path
+import requests, pickle, datetime, os.path, smtplib
 
 url = "https://ctftime.org/event/list/upcoming"
 today = datetime.date.today()
@@ -22,8 +22,21 @@ def isSoon(date):
     else:
         return False
 
-def sendEmail(name, date):
-    pass
+
+# Turn on/off https://myaccount.google.com/lesssecureapps
+def sendEmail(name, date, email):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    password = input("Password: ")
+    server.login("alexdejong737@gmail.com", password)
+    msg = "YOUR MESSAGE!"
+    server.sendmail("alexdejong737@gmail.com", "syedaliakrampervaiz@gmail.com", msg)
+    server.quit()
+
+
+
+
 
 data = getWebpageData(url)
 
@@ -58,8 +71,8 @@ for i in range(len(datalist)):
 
     # Send email
     if isSoon(date) and name not in pastContests:
-        sendEmail(name, date)
-        pastContests.append(name)
+        sendEmail(name, date, "alexdejong737@gmail.com")
+        #pastContests.append(name)
         print(name)
         if len(pastContests) > maxContestLength:
             pastContests = pastContests[1:]

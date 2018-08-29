@@ -29,9 +29,9 @@ def sendEmail(name, date, email):
     server.ehlo()
     server.starttls()
     password = input("Password: ")
-    server.login("alexdejong737@gmail.com", password)
+    server.login(email, password)
     msg = "YOUR MESSAGE!"
-    server.sendmail("alexdejong737@gmail.com", "syedaliakrampervaiz@gmail.com", msg)
+    server.sendmail("FROM", "TO", msg)
     server.quit()
 
 
@@ -71,7 +71,7 @@ for i in range(len(datalist)):
 
     # Send email
     if isSoon(date) and name not in pastContests:
-        sendEmail(name, date, "alexdejong737@gmail.com")
+        sendEmail(name, date, "EMAIL")
         #pastContests.append(name)
         print(name)
         if len(pastContests) > maxContestLength:

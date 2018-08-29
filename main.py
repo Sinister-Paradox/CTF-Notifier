@@ -30,7 +30,7 @@ def sendEmail(name, date, email):
     server.starttls()
     password = input("Password: ")
     server.login(email, password)
-    msg = "YOUR MESSAGE!"
+    msg = "A CTF IS COMING UP!\n" + name + date.strftime("on %d, %b %Y")
     server.sendmail("FROM", "TO", msg)
     server.quit()
 

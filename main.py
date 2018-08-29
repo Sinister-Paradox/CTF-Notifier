@@ -72,7 +72,7 @@ for i in range(len(datalist)):
     # Send email
     if isSoon(date) and name not in pastContests:
         sendEmail(name, date, "EMAIL")
-        #pastContests.append(name)
+        pastContests.append(name)
         print(name)
         if len(pastContests) > maxContestLength:
             pastContests = pastContests[1:]
